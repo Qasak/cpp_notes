@@ -14,19 +14,19 @@ class String {
         char* operator=(const char* s);
 
         // 在class String里添加成员函数
-        String& operator=(const String &s) {
-            if(str==s.str) return *this; // 确保不会删除自身
-            if(str) delete [] str;
-            if(s.str) { //s.str不为NULL才执行拷贝
-                str = new char[strlen(s.str)+1];
-                strcpy(str, s.str);
-            }
-            else 
-                str=NULL;
-            return *this;
-        }
+        // String& operator=(const String &s) {
+        //     if(str==s.str) return *this; // 确保不会删除自身
+        //     if(str) delete [] str;
+        //     if(s.str) { //s.str不为NULL才执行拷贝
+        //         str = new char[strlen(s.str)+1];
+        //         strcpy(str, s.str);
+        //     }
+        //     else 
+        //         str=NULL;
+        //     return *this;
+        // }
 
-        String(String &s) {
+        String(const String &s) {
         if(s.str) {
             str = new char[strlen(s.str) + 1];
             strcpy(str,s.str);
@@ -34,6 +34,17 @@ class String {
         else 
             str = NULL;
         }
+
+        String& operator=(const String &s) {
+            if(this!= &s) {
+                String strTemp(s);
+                char* pTemp = strTemp.str;
+                strTemp.str=str;
+                str=pTemp;
+            }
+            else return *this;
+        }
+
 
         void show() {
             cout<<str<<endl;
@@ -59,9 +70,9 @@ String::~String() {
 }
 
 int main() {
-    String S1;
+    String S1,S2;
     S1="this";
-    String S2(S1);
+    S2=S1;
     S2.show();
     return 0;
 }
