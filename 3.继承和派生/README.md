@@ -2,6 +2,12 @@
 
 定义：在定义一个新的类B时，如果该类与某个已有的类A相似(指的是B拥有A的全部特点)，那就可以把A作为一个基类，而把B作为基类的一个派生类(也称子类)  
 
+eg:
+
+![img](https://github.com/Qasak/cpp_notes/blob/master/3.%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/%E9%9C%80%E8%A6%81%E7%BB%A7%E6%89%BF%E6%9C%BA%E5%88%B6%E7%9A%84%E4%BE%8B%E5%AD%90.png)
+
+
+
 + 写法：
 
   ```c++
@@ -46,6 +52,20 @@
       	void SetInfo(const string & name_, const string & id_, int age_, char gender_);
       	string GetName() { return name; }
   };
+  void CStudent::PrintInfo()
+  {
+      cout << "Name:" << name << endl;
+      cout << "ID:" << id << endl;
+      cout << "Age:" << age << endl;
+      cout << "Gender:" << gender << endl;
+  }
+  void CStudent::SetInfo( const string & name_,const string & id_, int age_,char gender_ )
+  {
+      name = name_;
+      id = id_;
+      age = age_;
+      gender = gender_;
+  }
   
   ```
 
